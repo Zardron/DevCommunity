@@ -14,8 +14,8 @@ const InputGroup = ({
     return (
         <div className="input-group mb-3">
             <div className="input-group-prepend">
-                <span className="input-group text">
-                    <i className={icon}></i>
+                <span className="input-group-text">
+                    <i className={icon} style={{ width: "24px" }}></i>
                 </span>
             </div>
             <input

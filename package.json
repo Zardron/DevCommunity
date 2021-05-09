@@ -28,6 +28,9 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-bootstrap-sweetalert": "^5.2.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^10.16.7",
+    "toastr": "^2.1.4",
     "validator": "^13.6.0"
   },
   "devDependencies": {
