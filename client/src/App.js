@@ -15,9 +15,11 @@ import Login from '../src/components/auth/Login'
 import Register from '../src/components/auth/Register'
 import Dashboard from '../src/components/dashboard/Dashboard'
 import CreateProfile from '../src/components/create-profile/CreateProfile'
-
+import EditProfile from '../src/components/edit-profile/EditProfile'
 
 import './App.css'
+import AddExperience from './components/add-credentials/AddExperience'
+import AddEducation from './components/add-credentials/AddEducation'
 
 
 // Check for token
@@ -56,7 +58,18 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/add-experience" component={AddExperience} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/add-education" component={AddEducation} />
               </Switch>
             </div>
             <Footer />

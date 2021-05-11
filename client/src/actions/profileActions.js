@@ -1,7 +1,6 @@
 import axios from 'axios'
-import Swal from 'sweetalert2';
 
-import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_ERRORS } from './types'
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER } from './types'
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -17,6 +16,7 @@ export const getCurrentProfile = () => dispatch => {
         }))
 }
 
+
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
     axios.post('/api/profile', profileData)
@@ -29,13 +29,15 @@ export const createProfile = (profileData, history) => dispatch => {
 
 // Delete Profile Account
 export const deleteAccount = () => dispatch => {
-    Swal.fire({
-        title: 'Deleted!',
-        text: 'Your profile has been deleted.',
-        icon: 'success',
-        timer: 3000,
-        showConfirmButton: false
-    })
+    axios.delete('/api/profile')
+        .then(res => dispatch({
+            type: SET_CURRENT_USER,
+            payload: {}
+        }))
+        .catch(err => dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        }))
 }
 
 // Profile loading
@@ -50,4 +52,24 @@ export const clearCurrentProfile = () => {
     return {
         type: CLEAR_CURRENT_PROFILE
     }
+}
+
+// Add Experience
+export const addExperience = (expData, history) => dispatch => {
+    axios.post('/api/profile/experience', expData)
+        .then(res => history.push('/dashboard'))
+        .catch(err => dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        }))
+}
+
+// Add Experience
+export const addEducation = (eduData, history) => dispatch => {
+    axios.post('/api/profile/education', eduData)
+        .then(res => history.push('/dashboard'))
+        .catch(err => dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        }))
 }

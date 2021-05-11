@@ -2,16 +2,18 @@ import axios from 'axios'
 import { GET_ERRORS, SET_CURRENT_USER } from './types'
 import setAuthToken from '../utils/setAuthToken'
 import jwt_decode from 'jwt-decode'
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
     axios.post('/api/users/register', userData)
         .then(res =>
-            swal({
-                title: "Registered Successfully!",
-                icon: "success",
-                confirm: true
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Successfully Registered!',
+                showConfirmButton: false,
+                timer: 1500,
             })
                 .then((done) => {
                     if (done) {
